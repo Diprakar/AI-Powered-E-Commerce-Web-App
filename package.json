@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
     "mongoose": "^9.6.3",
     "next": "16.2.6",
     "next-auth": "^4.24.14",

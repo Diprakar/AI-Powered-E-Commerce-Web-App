@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-
+import { Product } from '@/data/products'
 
 const banners = [
   {
@@ -22,7 +22,6 @@ const banners = [
     image: '/banner/women.png'
   }
 ]
-
 
 
 const Home = () => {
@@ -58,8 +57,6 @@ const Home = () => {
 
 
 
-
-
   return (
 
     <main className="container mx-auto px-4">
@@ -73,7 +70,7 @@ const Home = () => {
           <a
             href="#chat"
             className="border-2 border-[#1a1a2e] text-[#1a1a2e] px-8 py-3 rounded-full font-semibold hover:opacity-80" >
-            Try the Chat 
+            Try the Chat
           </a>
         </div>
       </div>
@@ -87,7 +84,7 @@ const Home = () => {
           <img
             src={banners[current].image}
             alt=""
-            className="w-full h-full object-cover"/>
+            className="w-full h-full object-cover" />
 
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white z-20 text-center">
             <h3 className="text-2xl font-semibold md:text-4xl lg:text-6xl lg:font-extrabold w-72 lg:w-auto">
@@ -112,63 +109,123 @@ const Home = () => {
         </div>
         <div className="relative z-10 -mt-16">
 
-  <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-lg p-8">
+          <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-lg p-8">
 
-    <div className="grid grid-cols-4 gap-6 text-center">
+            <div className="grid grid-cols-4 gap-6 text-center">
 
-      <div>
-        <img
-          src="/images/1.jpg"
-          alt=""
-          className="w-24 h-24 mx-auto object-contain"
-        />
-        <h3 className="mt-4 text-27px font-semibold text-[#1a1a2e]">
-            Trending Styles
-        </h3>
+              <div>
+                <img
+                  src="/images/1.jpg"
+                  alt=""
+                  className="w-24 h-24 mx-auto object-contain"
+                />
+                <h3 className="mt-4 font-semibold text-[#1a1a2e]">
+                  Trending Styles
+                </h3>
+              </div>
+
+              <div>
+                <img
+                  src="/images/1.jpg"
+                  alt=""
+                  className="w-24 h-24 mx-auto object-contain"
+                />
+                <h3 className="mt-4 font-semibold text-[#1a1a2e]">
+                  New Arrivals
+                </h3>
+              </div>
+
+              <div>
+                <img
+                  src="/images/1.jpg"
+                  alt=""
+                  className="w-24 h-24 mx-auto object-contain"
+                />
+                <h3 className="mt-4  font-semibold text-[#1a1a2e]">
+                  Exclusive Deals
+
+                </h3>
+              </div>
+
+              <div>
+                <img
+                  src="/images/1.jpg"
+                  alt=""
+                  className="w-24 h-24 mx-auto object-contain"
+                />
+                <h3 className="mt-4  font-semibold text-[#1a1a2e]">
+                  Top Rated Picks
+                </h3>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
 
-      <div>
-        <img
-          src="/images/1.jpg"
-          alt=""
-          className="w-24 h-24 mx-auto object-contain"
-        />
-        <h3 className="mt-4 text-27px font-semibold text-[#1a1a2e]">
-            New Arrivals
-        </h3>
+
+      <div className="mt-28">
+
+        <div className="text-center mb-12">
+
+          <h2 className="text-5xl font-bold text-slate-900">
+            Trending Products
+          </h2>
+
+          <p className="text-slate-500 mt-4">
+            Most loved products by our customers
+          </p>
+
+        </div>
+
+        <div className="grid md:grid-cols-4 gap-8">
+
+          {Product.slice(0, 4).map(product => (
+
+            <div
+              key={product.id}
+              className="bg-white rounded-2xl border border-slate-200 p-6 text-center hover:shadow-lg transition"
+            >
+
+              <img
+                src={product.image}
+                className="w-40 h-52 object-contain mx-auto"
+              />
+
+              <h3 className="text-xl font-bold text-slate-900 mt-4">
+                {product.name}
+              </h3>
+
+              <p className="text-slate-500">
+                {product.category}
+              </p>
+
+              <p className="text-2xl font-bold text-slate-900 mt-3">
+                ${product.price}
+              </p>
+
+              <button className="mt-5 bg-slate-900 text-white px-6 py-2 rounded-lg hover:opacity-90 cursor-pointer">
+                Add To Cart
+              </button>
+
+            </div>
+
+          ))}
+
+        </div>
+
+        <div className="text-center mt-12">
+
+          <a href="/products" className="inline-block bg-slate-900 text-white px-8 py-3 rounded-xl font-semibold hover:opacity-90"
+          > Show More
+          </a>
+
+        </div>
+
       </div>
-
-      <div>
-        <img
-          src="/images/1.jpg"
-          alt=""
-          className="w-24 h-24 mx-auto object-contain"
-        />
-        <h3 className="mt-4 text-27px font-semibold text-[#1a1a2e]">
-            Exclsive Deals
-
-        </h3>
-      </div>
-
-      <div>
-        <img
-          src="/images/1.jpg"
-          alt=""
-          className="w-24 h-24 mx-auto object-contain"
-        />
-        <h3 className="mt-4 text-27px font-semibold text-[#1a1a2e]">
-            Top Rated Picks
-        </h3>
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-      </div>
-
 
     </main>
   )

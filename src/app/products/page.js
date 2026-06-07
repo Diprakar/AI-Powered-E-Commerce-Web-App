@@ -1,4 +1,5 @@
 import { Product } from '@/data/products'
+import Link from 'next/link'
 
 const ALLProducts = () => {
     return (
@@ -16,9 +17,13 @@ const ALLProducts = () => {
 
             </div>
 
+
             <div className="grid md:grid-cols-4 gap-8">
-                {Product.map(product => (
-                    <div key={product.id} className="relative bg-white rounded-2xl border border-slate-200 p-6 text-center hover:shadow-lg transition">
+                {Product.map(product => (<Link
+                    key={product.id}
+                    href={`/products/${product.id}`}>
+
+                    <div className="relative bg-white rounded-2xl border border-slate-200 p-6 text-center hover:shadow-lg transition">
 
 
                         <img
@@ -44,14 +49,15 @@ const ALLProducts = () => {
                             ${product.price}
                         </p>
 
-                        <a href="#" className="inline-block mt-5 bg-slate-900 text-white px-6 py-2 rounded-lg hover:opacity-90 cursor-pointer">
+                        <button className="mt-5 bg-slate-900 text-white px-6 py-2 rounded-lg hover:opacity-90 cursor-pointer" >
                             Add to Cart
-                        </a>
+                        </button>
                     </div>
-
+                </Link>
 
                 ))}
             </div>
+
             <div className="text-center mt-12">
 
                 <a href="../" className="inline-block bg-slate-900 text-white px-8 py-3 rounded-xl font-semibold hover:opacity-90"

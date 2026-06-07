@@ -1,21 +1,25 @@
 export const Product = [
   {
     id: 1,
-    name: 'Nike ',
+    name: 'Nike',
     category: 'T-Shirt',
     price: 125,
     image: '/images/1.png',
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    badge: 'New!'
+    badge: 'New',
+    inStock: true,
+     stock: 12,
   },
   {
     id: 2,
     name: 'Adidas',
-    category:'T-Shirt',
+    category: 'T-Shirt',
     price: 95,
     image: '/images/2.png',
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    badge: 'TOP SALE!'
+    badge: 'TOP SALE!',
+    inStock: true,
+     stock: 7,
   },
   {
     id: 3,
@@ -24,16 +28,20 @@ export const Product = [
     price: 120,
     image: '/images/3.png',
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    badge: 'New!'
+    badge: 'New',
+    inStock: true,
+     stock: 15,
   },
   {
     id: 4,
-    name: 'Tom Ford ',
+    name: 'Tom Ford',
     category: 'Pants',
     price: 350,
     image: '/images/4.png',
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    badge: 'New!'
+    badge: 'New',
+    inStock: true,
+     stock: 12,
   },
   {
     id: 5,
@@ -42,7 +50,9 @@ export const Product = [
     price: 520,
     image: '/images/5.png',
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    badge: ''
+    badge: '',
+    inStock: true,
+     stock: 30,
   },
   {
     id: 6,
@@ -51,7 +61,9 @@ export const Product = [
     price: 228,
     image: '/images/6.png',
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    badge: ''
+    badge: '',
+    inStock: true,
+     stock: 20,
   },
   {
     id: 7,
@@ -60,7 +72,8 @@ export const Product = [
     price: 228,
     image: '/images/7.png',
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    badge: ''
+    badge: '',
+    inStock: false,
+     stock: 0,
   },
-
 ]

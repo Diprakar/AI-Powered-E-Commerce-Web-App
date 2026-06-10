@@ -2,11 +2,15 @@
 
 import { useState } from 'react'
 import { Product } from '@/data/products'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
+import Swal from 'sweetalert2'
+
+
 
 const ProductDetails = () => {
 
     const params = useParams()
+    const router = useRouter()
     const product = Product.find(p => p.id === Number(params.id))
 
     const [selectedSize, setSelectedSize] = useState('')
@@ -21,6 +25,46 @@ const ProductDetails = () => {
     }
 
     const totalPrice = product.price * quantity
+
+    const handleAddToCart = async () => {
+        if (!selectedSize) return
+
+        const res = await fetch('/api/cart', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                productId: product.id,
+                name: product.name,
+                image: product.image,
+                category: product.category,
+                price: product.price,
+                size: selectedSize,
+                quantity: quantity,
+            })
+        })
+
+        const data = await res.json()
+        console.log('API response:', data)
+
+        if (data.success) {
+            Swal.fire('Success', 'Item added to cart!', 'success')
+        } else if (data.message === 'Please login first') {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Please Login First',
+                text: 'You need to login or register to add items to your cart.',
+                confirmButtonText: 'Login',
+                confirmButtonColor: '#1a1a2e',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    router.push('/login')
+                }
+            })
+        } else {
+            Swal.fire('Error', 'Something went wrong', 'error')
+        }
+    }
+
 
     return (
         <main className="container mx-auto px-10 py-10">
@@ -67,18 +111,22 @@ const ProductDetails = () => {
                     <div style={{ marginTop: '30px' }}>
                         <p className="text-slate-700 font-semibold mb-3">Select Size:</p>
                         <div className="flex flex-wrap" style={{ gap: '12px' }}>
-                            {product.sizes.map(size => (
-                                <button
-                                    key={size}
-                                    onClick={() => setSelectedSize(size)}
-                                    className={`px-4 py-2 border rounded-lg text-sm font-medium transition cursor-pointer ${selectedSize === size
-                                        ? 'bg-slate-900 text-white border-slate-900'
-                                        : 'border-slate-300 hover:bg-slate-900 hover:text-white'
-                                        }`}
-                                >
-                                    {size}
-                                </button>
-                            ))}
+                            {product.sizes.map(size => {
+                                const isAvailable = product.availableSizes.includes(size)
+                                return (
+                                    <button
+                                        key={size}
+                                        onClick={() => isAvailable && setSelectedSize(size)}
+                                        className={`px-4 py-2 border rounded-lg text-sm font-medium transition ${!isAvailable
+                                                ? 'border-slate-200 text-slate-300 cursor-not-allowed line-through'
+                                                : selectedSize === size
+                                                ? 'bg-slate-900 text-white border-slate-900 cursor-pointer'
+                                                : 'border-slate-300 hover:bg-slate-900 hover:text-white cursor-pointer'
+                                                }`}>
+                                        {size}
+                                    </button>
+                                )
+                            })}
                         </div>
                     </div>
 
@@ -112,6 +160,7 @@ const ProductDetails = () => {
                     {/* Buttons */}
                     <div className="flex gap-4 mt-10">
                         <button
+                            onClick={handleAddToCart}
                             disabled={!selectedSize}
                             className={`px-8 py-3 rounded-xl font-semibold transition ${selectedSize
                                 ? 'bg-slate-900 text-white hover:opacity-90 cursor-pointer'

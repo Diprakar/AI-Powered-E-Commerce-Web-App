@@ -3,6 +3,7 @@ import "./globals.css"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
 import NextAuthProvider from "@/components/nextAuthProvider"
+import Chatbot from "@/components/chatbot"
 
 const poppins = Poppins({
   weight: ["100", "200", "400", "500", "600", "800"],
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
           <Navbar />
           <main>{children}</main>
           <Footer />
+          <Chatbot />
         </body>
       </html>
     </NextAuthProvider>

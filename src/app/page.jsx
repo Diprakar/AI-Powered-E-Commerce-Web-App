@@ -67,11 +67,11 @@ const Home = () => {
         </h1>
         <p className="text-[#1a1a2e] opacity-70 text-lg mb-8"> Finding the ultimate t-shirt and pant combination is just a message away. Just ask !!!</p>
         <div className="flex justify-center">
-          <a
-            href="#chat"
-            className="border-2 border-[#1a1a2e] text-[#1a1a2e] px-8 py-3 rounded-full font-semibold hover:opacity-80" >
+          <button
+            onClick={() => window.dispatchEvent(new Event('openChat'))}
+            className="border-2 border-[#1a1a2e] text-[#1a1a2e] px-8 py-3 rounded-full font-semibold hover:opacity-80 cursor-pointer">
             Try the Chat
-          </a>
+          </button>
         </div>
       </div>
 
@@ -181,7 +181,7 @@ const Home = () => {
 
         </div>
 
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-4 gap-7">
 
           {Product.slice(0, 4).map(product => (
 
@@ -203,14 +203,19 @@ const Home = () => {
                 {product.category}
               </p>
 
-              <p className="text-2xl font-bold text-slate-900 mt-3">
-                ${product.price}
-              </p>
+              <div style={{ marginBottom: '13px' }}>
+                <p className="font-bold text-slate-900" style={{ fontSize: '24px' }}>
+                  ${product.price}
+                </p>
 
-              <button className="mt-5 bg-slate-900 text-white px-6 py-2 rounded-lg hover:opacity-90 cursor-pointer">
-                Add To Cart
-              </button>
 
+                <a
+                  href={`/products/${product.id}`}
+                  className="mt-3 bg-slate-900 text-white px-5 py-1 rounded-lg hover:opacity-90 cursor-pointer">
+                  View
+                </a>
+
+              </div>
             </div>
 
           ))}
@@ -227,7 +232,7 @@ const Home = () => {
 
       </div>
 
-    </main>
+    </main >
   )
 }
 
